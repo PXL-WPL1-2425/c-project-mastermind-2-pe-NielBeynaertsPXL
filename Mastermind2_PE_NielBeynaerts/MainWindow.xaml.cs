@@ -216,31 +216,12 @@ namespace Mastermind2_PE_NielBeynaerts
             {
                 StopCountdown();
 
-                MessageBoxResult result = MessageBox.Show($"Code is gekraakt in {attempts} pogingen, wil je nog eens?", $"WINNER", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                if (result == MessageBoxResult.Yes)
-                {
-                    ResetGame(); // Herstart het spel
-                }
-                else
-                {
-                    Close(); // Sluit de applicatie
-                }
+                MessageBox.Show($"Code is gekraakt in {attempts} pogingen", $"WINNER", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
 
             attempts++;
-            if (attempts > 10)
-            {
-                MessageBoxResult result = MessageBox.Show($"Je hebt het maximaal aantal pogingen bereikt, wil je nog eens?", $"WINNER", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                if (result == MessageBoxResult.Yes)
-                {
-                    ResetGame(); // Herstart het spel
-                }
-                else
-                {
-                    Close(); // Sluit de applicatie
-                }
-            }
+
             StopCountdown();
             StartCountdown();
             this.Title = $"Poging {attempts}";
@@ -295,7 +276,7 @@ namespace Mastermind2_PE_NielBeynaerts
             if (attempts > 10)
             {
                 MessageBox.Show("You have reached the maximum amount of guesses");
-                Close();
+                StopGame();
             }
             else
             {
@@ -306,7 +287,16 @@ namespace Mastermind2_PE_NielBeynaerts
             }
 
         }
+        private void StopGame()
+        {
+            gameCanvas.Visibility = Visibility.Hidden;
 
+            // Reset Guesses Canvas
+            attemptCanvas.Children.Clear();
+
+            // Update de titel
+            this.Title = $"Mastermind";
+        }
         ///<summary>
         ///De 'StopCountdown' methode stopt de timer
         ///die eerder werd gestart via de 'StartCountdown' methode
@@ -340,6 +330,16 @@ namespace Mastermind2_PE_NielBeynaerts
                 // Annuleer het afsluiten van de applicatie
                 e.Cancel = true;
             }
+        }
+
+        private void newGame_Click(object sender, RoutedEventArgs e)
+        {
+            ResetGame();
+        }
+
+        private void closeApplication_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -10,36 +10,38 @@
     <Grid>
         <Menu x:Name="mainMenu">
             <MenuItem Header="Bestand" >
-                <MenuItem x:Name="newGame" Header="Nieuw spel"/>
+                <MenuItem x:Name="newGame" Header="Nieuw spel" Click="newGame_Click"/>
                 <MenuItem x:Name="highScores" Header="Highscores"/>
-                <MenuItem x:Name="closeApplication" Header="Afsluiten"/>
+                <MenuItem x:Name="closeApplication" Header="Afsluiten" Click="closeApplication_Click"/>
             </MenuItem>
             <MenuItem Header="Instellingen" >
                 <MenuItem x:Name="amountOfGuesses" Header="Aantal pogingen"/>
             </MenuItem>
         </Menu>
-        <Label Content="Klik op 1 van de boxen om een kleur te kiezen" HorizontalAlignment="Center" Margin="0,31,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="color1Button" Content="Kleur 1" HorizontalAlignment="Left" Margin="215,72,0,0" VerticalAlignment="Top" Height="73" Width="90" Click="color1Button_Click"/>
-        <Button x:Name="color2Button" Content="Kleur 2" HorizontalAlignment="Left" Margin="310,72,0,0" VerticalAlignment="Top" Height="73" Width="90" Click="color2Button_Click"/>
-        <Button x:Name="color3Button" Content="Kleur 3" HorizontalAlignment="Left" Margin="404,72,0,0" VerticalAlignment="Top" Height="73" Width="90" Click="color3Button_Click"/>
-        <Button x:Name="color4Button" Content="Kleur 4" HorizontalAlignment="Left" Margin="499,72,0,0" VerticalAlignment="Top" Height="73" Width="90" Click="color4Button_Click"/>
-        <Button x:Name="validateColorCode" Content="Controleer kleurcode" HorizontalAlignment="Center" Height="23" Margin="0,273,0,0" VerticalAlignment="Top" Width="306" Click="validateColorCode_Click"/>
+        <Canvas x:Name="gameCanvas">
+            <Label Content="Klik op 1 van de boxen om een kleur te kiezen" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="273" Canvas.Top="28"/>
+            <Button x:Name="color1Button" Content="Kleur 1" HorizontalAlignment="Left" Margin="215,72,0,0" VerticalAlignment="Top" Height="73" Width="90" Click="color1Button_Click"/>
+            <Button x:Name="color2Button" Content="Kleur 2" HorizontalAlignment="Left" Margin="310,72,0,0" VerticalAlignment="Top" Height="73" Width="90" Click="color2Button_Click"/>
+            <Button x:Name="color3Button" Content="Kleur 3" HorizontalAlignment="Left" Margin="404,72,0,0" VerticalAlignment="Top" Height="73" Width="90" Click="color3Button_Click"/>
+            <Button x:Name="color4Button" Content="Kleur 4" HorizontalAlignment="Left" Margin="499,72,0,0" VerticalAlignment="Top" Height="73" Width="90" Click="color4Button_Click"/>
+            <Button x:Name="validateColorCode" Content="Controleer kleurcode" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="306" Click="validateColorCode_Click" Canvas.Left="247" Canvas.Top="270"/>
 
-        <GroupBox x:Name="radioButtonsGroupBox" Header="Kleuren" HorizontalAlignment="Left" Margin="224,169,0,0" VerticalAlignment="Top" Visibility="Hidden">
-            <StackPanel Orientation="Horizontal">
-                <RadioButton x:Name="redRadioButton" Content="Rood" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
-                <RadioButton x:Name="yellowRadioButton" Content="Geel" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
-                <RadioButton x:Name="blueRadioButton" Content="Blauw" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
-                <RadioButton x:Name="orangeRadioButton" Content="Oranje" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
-                <RadioButton x:Name="greenRadioButton" Content="Groen" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
-                <RadioButton x:Name="whiteRadioButton" Content="Wit" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
-            </StackPanel>
-        </GroupBox>
-        <TextBox x:Name="randomGeneratedCodeTextBox" HorizontalAlignment="Center" Margin="0,240,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180" Height="28" Visibility="Hidden"/>
-        <Label x:Name="timerLabel" Content="00" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="385,146,0,0" VerticalAlignment="Top"/>
+            <GroupBox x:Name="radioButtonsGroupBox" Header="Kleuren" HorizontalAlignment="Left" Margin="224,169,0,0" VerticalAlignment="Top" Visibility="Hidden">
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="redRadioButton" Content="Rood" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
+                    <RadioButton x:Name="yellowRadioButton" Content="Geel" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
+                    <RadioButton x:Name="blueRadioButton" Content="Blauw" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
+                    <RadioButton x:Name="orangeRadioButton" Content="Oranje" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
+                    <RadioButton x:Name="greenRadioButton" Content="Groen" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
+                    <RadioButton x:Name="whiteRadioButton" Content="Wit" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
+                </StackPanel>
+            </GroupBox>
+            <TextBox x:Name="randomGeneratedCodeTextBox" HorizontalAlignment="Center" Margin="0,240,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180" Height="28" Visibility="Hidden"/>
+            <Label x:Name="timerLabel" Content="00" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="385,146,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="pointsLabel" Content="100" HorizontalAlignment="Left" Margin="631,96,0,0" VerticalAlignment="Top"/>
 
-        <Canvas x:Name="attemptCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
-        <Label x:Name="pointsLabel" Content="100" HorizontalAlignment="Left" Margin="631,96,0,0" VerticalAlignment="Top"/>
+        </Canvas>
+            <Canvas x:Name="attemptCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Center"></Canvas>
 
 
     </Grid>
