@@ -15,7 +15,7 @@
                 <MenuItem x:Name="closeApplication" Header="Afsluiten" Click="closeApplication_Click"/>
             </MenuItem>
             <MenuItem Header="Instellingen" >
-                <MenuItem x:Name="amountOfGuesses" Header="Aantal pogingen"/>
+                <MenuItem x:Name="amountOfGuesses" Header="Aantal pogingen" Click="amountOfGuesses_Click"/>
             </MenuItem>
         </Menu>
         <Canvas x:Name="gameCanvas">

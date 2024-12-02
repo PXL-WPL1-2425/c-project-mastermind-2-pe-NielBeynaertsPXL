@@ -35,6 +35,9 @@ namespace Mastermind2_PE_NielBeynaerts
         bool userNameEntered = false;
         int attempts = 0;
         int points = 100;
+
+        string[,] highScores = new string[15, 3];
+        int amountOfPlays;
         public MainWindow()
         {
             InitializeComponent();
@@ -52,6 +55,7 @@ namespace Mastermind2_PE_NielBeynaerts
         public void CreateRandomColorCombination()
         {
             StartGame();
+            amountOfPlays++;
 
             //SolidColorBrush[] colors = { Brushes.Red, Brushes.Yellow, Brushes.Green, Brushes.Blue, Brushes.White, Brushes.Orange };
             string[] colorsName = { "Red", "Yellow", "Green", "Blue", "White", "Orange" };
@@ -215,7 +219,6 @@ namespace Mastermind2_PE_NielBeynaerts
             if (selectedColors[0] == randomColorSelection[0] && selectedColors[1] == randomColorSelection[1] && selectedColors[2] == randomColorSelection[2] && selectedColors[3] == randomColorSelection[3])
             {
                 StopCountdown();
-
                 MessageBox.Show($"Code is gekraakt in {attempts} pogingen", $"WINNER", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
@@ -228,6 +231,9 @@ namespace Mastermind2_PE_NielBeynaerts
         }
         private void ResetGame()
         {
+            highScores[attempts - 1, 0 ] = userName;
+            highScores[attempts - 1, 1 ] = amountOfGuesses.ToString();
+            highScores[attempts - 1, 2 ] = points.ToString();
             // Reset alle variabelen
             attempts = 0;
             points = 100;
@@ -340,6 +346,16 @@ namespace Mastermind2_PE_NielBeynaerts
         private void closeApplication_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void amountOfGuesses_Click(object sender, RoutedEventArgs e)
+        {
+            string result = Interaction.InputBox("Hoeveel pogingen wilt u krijgen? Kies een aantal tussen 3 en 20.", "Invoer", "10", 500);
+            while (string.IsNullOrEmpty(result))
+            {
+                MessageBox.Show("Geef getal!", "Foutieve invoer");
+                result = Interaction.InputBox("Geef een getal", "Invoer", "10", 500);
+            }
         }
     }
 }
