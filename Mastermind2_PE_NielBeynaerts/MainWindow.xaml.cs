@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Microsoft.VisualBasic;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -30,6 +31,8 @@ namespace Mastermind2_PE_NielBeynaerts
 
         private DispatcherTimer timer = new DispatcherTimer();
 
+        string userName;
+        bool userNameEntered = false;
         int attempts = 0;
         int points = 100;
         public MainWindow()
@@ -39,8 +42,17 @@ namespace Mastermind2_PE_NielBeynaerts
             CreateRandomColorCombination();
         }
 
+        public void StartGame()
+        {
+            do
+            {
+                userName = Interaction.InputBox($"Welkom! Geef uw naam.", "Welkom");
+            } while (userName == null || userName == "");
+        }
         public void CreateRandomColorCombination()
         {
+            StartGame();
+
             //SolidColorBrush[] colors = { Brushes.Red, Brushes.Yellow, Brushes.Green, Brushes.Blue, Brushes.White, Brushes.Orange };
             string[] colorsName = { "Red", "Yellow", "Green", "Blue", "White", "Orange" };
 
